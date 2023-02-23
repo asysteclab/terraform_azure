@@ -37,3 +37,11 @@ resource "azurerm_shared_image" "windows10_shared_image" {
     sku = "windows10-image-azure"
   }
 }
+
+resource "azurerm_storage_account" "azure_daas_storage_account" {
+  name                     = "azuredaasstorageaccount"
+  resource_group_name      = azurerm_resource_group.azure_daas_rg.name
+  location                 = "northeurope"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
