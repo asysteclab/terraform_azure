@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "~> 3.0.2"
     }
   }
@@ -13,28 +13,28 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "azure_daas_rg" {
-  name = "Azure-Daas-RG"
+  name     = "Azure-Daas-RG"
   location = "northeurope"
 }
 
 resource "azurerm_shared_image_gallery" "azure_image_gallery" {
-  name = "packerImageGallery"
+  name                = "packerImageGallery"
   resource_group_name = azurerm_resource_group.azure_daas_rg.name
-  location = "northeurope"
+  location            = "northeurope"
 }
 
 resource "azurerm_shared_image" "windows10_shared_image" {
-  name = "windows10-image-azure"
-  gallery_name = azurerm_shared_image_gallery.azure_image_gallery.name
+  name                = "windows10-image-azure"
+  gallery_name        = azurerm_shared_image_gallery.azure_image_gallery.name
   resource_group_name = azurerm_resource_group.azure_daas_rg.name
-  location = "northeurope"
-  os_type = "Windows"
-  hyper_v_generation = "V2"
+  location            = "northeurope"
+  os_type             = "Windows"
+  hyper_v_generation  = "V2"
 
   identifier {
     publisher = "AIB"
-    offer = "Windows-10"
-    sku = "windows10-image-azure"
+    offer     = "Windows-10"
+    sku       = "windows10-image-azure"
   }
 }
 
